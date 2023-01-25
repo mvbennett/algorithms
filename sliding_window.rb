@@ -32,7 +32,7 @@ def minimumWindowSubstring(fullString, chars)
       end
   end
   if result[1] < fullString.length + 1
-      return fullString.slice(result[0], result[1] - 1)
+      return fullString.slice(result[0]...result[1])
   else
       return ""
   end
@@ -42,3 +42,4 @@ end
 p minimumWindowSubstring("ADOBECODEBANC", "ABC")
 p minimumWindowSubstring("ADOBECODEBANC", "DB")
 p minimumWindowSubstring("HELLO WORLD", "FOB")
+p minimumWindowSubstring("AAABECODEBANC", "ABC")
