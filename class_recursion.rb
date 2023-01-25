@@ -9,7 +9,7 @@
 #     return @sum << build if depth == string.length
 #
 #     combos(build, depth + 1, string)
-#     combos(build += string[depth], depth + 1, string)
+#     combos(build + string[depth], depth + 1, string)
 #   end
 #
 #   def get_permutations(string)
