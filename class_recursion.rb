@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # class Permutations
 #   def initialize
 #     @sum = []
@@ -19,7 +21,7 @@
 # test_case = Permutations.new
 # p test_case.get_permutations('abc')
 
-
+# class for permuatation
 class Permutations
   def initialize(string)
     @string = string
@@ -30,14 +32,14 @@ class Permutations
     return @sum << build if depth == @string.length
 
     combos(build, depth + 1)
-    combos(build += @string[depth], depth + 1)
+    combos(build + @string[depth], depth + 1)
   end
 
-  def get_permutations
+  def permutate
     combos('', 0)
-    return @sum
+    @sum
   end
 end
 
 test_case = Permutations.new('abc')
-p test_case.get_permutations
+p test_case.permutate
