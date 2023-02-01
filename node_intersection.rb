@@ -8,7 +8,7 @@ class Node
 end
 
 class LinkedList
-  attr_reader :head, :tail, :length
+  attr_reader :head, :length
   attr_accessor :tail
 
   def initialize
@@ -30,11 +30,10 @@ class LinkedList
   def append(node)
     if @length.zero?
       @head = node
-      @tail = node
     else
       @tail.next = node
-      @tail = node
     end
+    @tail = node
     @length += 1
   end
 
@@ -49,6 +48,7 @@ end
 
 class Queue
   attr_reader :list
+
   def initialize
     @list = LinkedList.new
   end
@@ -95,14 +95,14 @@ list2.append(Node.new((5)))
 
 node1 = Node.new(3)
 node2 = Node.new(2)
-node3 = Node.new(1)
+# node3 = Node.new(1)
 
 list1.append(node1)
 list2.append(node1)
 list1.append(node2)
 list2.append(node2)
 
-puts "expected: node value 3"
+puts 'expected: node value 3'
 p find_intersection(list1, list2)
 
 list3 = LinkedList.new
@@ -112,5 +112,5 @@ list3.append(Node.new(7))
 list3.append(Node.new(5))
 list3.append(Node.new(4))
 
-puts "expected: nil"
+puts 'expected: nil'
 p find_intersection(list1, list3)
