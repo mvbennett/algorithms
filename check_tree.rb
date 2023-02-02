@@ -89,8 +89,7 @@ def check_tree(graph)
     visited << vertex
 
     graph[vertex].each do |edge|
-      # p edge
-      traverse.call(edge.to_sym, vertex) unless visited.include?(edge.to_sym)
+      traverse.call(edge.to_sym, vertex) unless edge == parent.to_s
     end
   end
   traverse.call(vertex, '')
