@@ -1,4 +1,4 @@
-def robotPaths(matrix)
+def robot_paths(matrix)
   paths = 0
 
   find_paths = lambda do |row, col|
