@@ -1,4 +1,5 @@
-#
+# fronzen_string_literal: true
+
 # Given an undirected graph with N vertices and is a tree-like (meaning there are no cycles, no disconnected vertices or disjoined sets).
 #
 # If a vertex in the given graph is selected as a root node of a tree, there is an associated height. (The height of a tree is defined as the largest number of nodes in the path from the root to a leaf)

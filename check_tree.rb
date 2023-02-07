@@ -1,65 +1,62 @@
-=begin
+# frozen_string_literal: true
 
+# 311 - Graph is a Tree ..?
+# Given an undirected graph in an adjacency list format (a map of every vertex to a list of all its neighboring vertices), determine whether or not said graph is a tree.
 
-311 - Graph is a Tree ..?
-Given an undirected graph in an adjacency list format (a map of every vertex to a list of all its neighboring vertices), determine whether or not said graph is a tree.
+# Input: Undirected Graph as an Adjacency List (Map<int, int[]>)
+# Output: Boolean
+# Example
+# Input:
+#  {
+#    0 : [1, 2, 3],
+#    1 : [0],
+#    2 : [0],
+#    3 : [0, 4],
+#    4 : [3]
+#  }
 
-Input: Undirected Graph as an Adjacency List (Map<int, int[]>)
-Output: Boolean
-Example
-Input:
- {
-   0 : [1, 2, 3],
-   1 : [0],
-   2 : [0],
-   3 : [0, 4],
-   4 : [3]
- }
+# => TRUE
 
-=> TRUE
+# Input:
+#  {
+#    0 : [1, 2, 3],
+#    1 : [0, 2],
+#    2 : [0, 1],
+#    3 : [0, 4],
+#    4 : [3]
+#  }
+#  => False
 
-Input:
- {
-   0 : [1, 2, 3],
-   1 : [0, 2],
-   2 : [0, 1],
-   3 : [0, 4],
-   4 : [3]
- }
- => False
+#  Diagram:
 
- Diagram:
+#  visited = []
 
- visited = []
+# 1-------0-------3
+#       /        |
+#     /          |
+#   2            4
 
-1-------0-------3
-      /        |
-    /          |
-  2            4
+#   1-------0-------3
+#   |    /          |
+#   |  /            |
+#   2               4
 
-  1-------0-------3
-  |    /          |
-  |  /            |
-  2               4
+# DFS
+# Pseudocode:
 
-DFS
-Pseudocode:
+# vertex = first key
+# visited = []
+# function traverse(vertex, parent):
+#   if vertex in visited:
+#     return false
 
-vertex = first key
-visited = []
-function traverse(vertex, parent):
-  if vertex in visited:
-    return false
+#   vertex.edges.each(edge):
+#     if !parent:
+#       traverse(edge, vertex)
 
-  vertex.edges.each(edge):
-    if !parent:
-      traverse(edge, vertex)
+#   return
 
-  return
-=end
-
-
-
+# Vertex class
 class Vertex
   attr_reader :value
   attr_accessor :edges
@@ -70,6 +67,7 @@ class Vertex
   end
 end
 
+# Graph class
 class Graph
   attr_accessor :verticies
 
@@ -78,10 +76,8 @@ class Graph
   end
 end
 
-def check_tree(graph)
+def check_tree(graph, visited = [], result: true)
   root = graph.keys.first
-  visited = []
-  result = true
 
   traverse = lambda do |vertex, parent|
     return result = false if visited.include?(vertex)
