@@ -66,6 +66,7 @@ def string_exists?(matrix, target_string)
   find_string = lambda do |string, char_index, row, col|
     return if row.negative? || col.negative? || row >= matrix.length || col >= matrix.first.length
     return if visited.include?("#{row}_#{col}")
+
     if matrix[row][col] == target_string[char_index]
       string += matrix[row][col]
       char_index += 1
@@ -104,7 +105,6 @@ false_one = [['u', 'd', 'c', 'q'],
             ['i', 'w', 'o', 'j'],
             ['k', 'l', 'm', 'n']]
 
-
 describe string_exists?(true_one, 'dog') do
   context 'given a matrix with all characters adjacent' do
     it 'it should return true' do
@@ -112,7 +112,6 @@ describe string_exists?(true_one, 'dog') do
     end
   end
 end
-
 
 describe string_exists?(true_two, 'dog') do
   context 'given a matrix with all characters adjacent' do
