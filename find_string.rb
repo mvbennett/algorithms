@@ -89,18 +89,43 @@ def string_exists?(matrix, target_string)
   existence
 end
 
-p string_exists?([['a', 'b', 'c', 'd'],
- ['e', 'f', 'g', 'h'],
- ['i', 'd', 'o', 'j'],
- ['k', 'l', 'm', 'n']], 'dog')
+true_one = [['a', 'b', 'c', 'd'],
+            ['e', 'f', 'g', 'h'],
+            ['i', 'd', 'o', 'j'],
+            ['k', 'l', 'm', 'n']]
+
+true_two = [['o', 'd', 'c', 'q'],
+            ['g', 'f', 'g', 'h'],
+            ['i', 'w', 'o', 'j'],
+            ['k', 'l', 'm', 'n']]
+
+false_one = [['u', 'd', 'c', 'q'],
+            ['g', 'f', 'g', 'h'],
+            ['i', 'w', 'o', 'j'],
+            ['k', 'l', 'm', 'n']]
 
 
-p string_exists?([['o', 'd', 'c', 'q'],
- ['g', 'f', 'g', 'h'],
- ['i', 'w', 'o', 'j'],
- ['k', 'l', 'm', 'n']], 'dog')
+describe string_exists?(true_one, 'dog') do
+  context 'given a matrix with all characters adjacent' do
+    it 'it should return true' do
+      expect(string_exists?(true_one, 'dog')).to be_truthy
+    end
+  end
+end
 
-p string_exists?([['u', 'd', 'c', 'q'],
- ['g', 'f', 'g', 'h'],
- ['i', 'w', 'o', 'j'],
- ['k', 'l', 'm', 'n']], 'dog')
+
+describe string_exists?(true_two, 'dog') do
+  context 'given a matrix with all characters adjacent' do
+    it 'it should return true' do
+      expect(string_exists?(true_two, 'dog')).to be_truthy
+    end
+  end
+end
+
+describe string_exists?(false_one, 'dog') do
+  context 'given a matrix with not all characters adjacent' do
+    it 'it should return false' do
+      expect(string_exists?(false_one, 'dog')).to be_falsy
+    end
+  end
+end
