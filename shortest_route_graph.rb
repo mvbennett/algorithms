@@ -37,7 +37,6 @@ end
 def shortest_route(_graph, start, destination)
   visited = []
   queue = [start]
-  shortest = 1.0 / 0
   layer = 0
 
   until queue.nil?
