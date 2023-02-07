@@ -79,7 +79,7 @@ class Graph
 end
 
 def check_tree(graph)
-  vertex = graph.keys.first
+  root = graph.keys.first
   visited = []
   result = true
 
@@ -92,31 +92,63 @@ def check_tree(graph)
       traverse.call(edge.to_sym, vertex) unless edge == parent.to_s
     end
   end
-  traverse.call(vertex, '')
+  traverse.call(root, '')
   result
 end
 
-puts "expect: true"
-p check_tree(
-  {
-   '0': ['1', '2', '3'],
-   '1': ['0'],
-   '2': ['0'],
-   '3': ['0', '4'],
-   '4': ['3']
- }
-)
+# puts 'expect: true'
+# p check_tree(
+#   {
+#     '0': ['1', '2', '3'],
+#     '1': ['0'],
+#     '2': ['0'],
+#     '3': ['0', '4'],
+#     '4': ['3']
+#   }
+# )
 
-puts "expect: false"
-p check_tree(
-   {
-   '0': ['1', '2', '3'],
-   '1': ['0', '2'],
-   '2': ['0', '1'],
-   '3': ['0', '4'],
-   '4': ['3']
- }
-)
+# puts 'expect: false'
+# p check_tree(
+#   {
+#     '0': ['1', '2', '3'],
+#     '1': ['0', '2'],
+#     '2': ['0', '1'],
+#     '3': ['0', '4'],
+#     '4': ['3']
+#   }
+# )
+
+true_one = {
+  '0': ['1', '2', '3'],
+  '1': ['0'],
+  '2': ['0'],
+  '3': ['0', '4'],
+  '4': ['3']
+}
+
+false_one = {
+  '0': ['1', '2', '3'],
+  '1': ['0', '2'],
+  '2': ['0', '1'],
+  '3': ['0', '4'],
+  '4': ['3']
+}
+
+describe check_tree(true_one) do
+  context 'when given a correct tree' do
+    it 'should return true' do
+      expect(check_tree(true_one)).to be_truthy
+    end
+  end
+end
+
+describe check_tree(false_one) do
+  context 'when given an incorrect tree' do
+    it 'should return false' do
+      expect(check_tree(false_one)).to be_falsy
+    end
+  end
+end
 
 # Thanks!!! :)
 # oh, looks like it didn't work, I'll try after class
