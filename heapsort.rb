@@ -6,32 +6,32 @@ def child_index(arr, parent_index, bounds)
   child_i_two
 end
 
-def swap(arr, index_1, index_2)
-  arr[index_1], arr[index_2] = arr[index_2], arr[index_1]
+def swap(arr, index1, index2)
+  arr[index1], arr[index2] = arr[index2], arr[index1]
 end
 
 def bubble_down(arr, parent_index, bounds)
   child_index = child_index(arr, parent_index, bounds)
 
   while child_index < bounds && arr[parent_index] < arr[child_index]
-      swap(arr, parent_index, child_index)
-      parent_index = child_index
-      child_index = child_index(arr, parent_index, bounds)
+    swap(arr, parent_index, child_index)
+    parent_index = child_index
+    child_index = child_index(arr, parent_index, bounds)
   end
 end
 
 def heapsort(arr)
   i = arr.length - 1
   while i >= 0
-      bubble_down(arr, i, arr.length)
-     i-= 1
+    bubble_down(arr, i, arr.length)
+    i -= 1
   end
 
   wall = arr.length - 1
   while wall >= 0
-      swap(arr, 0, wall)
-      bubble_down(arr, 0, wall)
-      wall -= 1
+    swap(arr, 0, wall)
+    bubble_down(arr, 0, wall)
+    wall -= 1
   end
   arr
 end
