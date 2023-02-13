@@ -1,4 +1,6 @@
+# frozen_string_literal: true
 
+# MinHeap class
 class MinHeap
   attr_reader :elements
 
