@@ -33,4 +33,26 @@ def closest_steakhouses(coordinates, limit)
   fetch_coordinates(coordinates, indexes)
 end
 
-p closest_steakhouses([[1, -1], [3, 4], [2, 5], [1, 2]], 2)
+describe 'Closest Steakhouse' do
+  context 'When finding two closest steakhouses' do
+    it 'should return the coordinates of the two closest' do
+      expect(closest_steakhouses([[1, -1], [3, 4], [2, 5], [1, 2]], 2)).to eq([[1, -1], [1, 2]])
+    end
+  end
+end
+
+describe 'Closest Steakhouse' do
+  context 'When finding three closest steakhouses' do
+    it 'should return the coordinates of the three closest' do
+      expect(closest_steakhouses([[1, -1], [3, 4], [2, 5], [1, 2]], 3)).to eq([[1, -1], [1, 2], [3, 4]])
+    end
+  end
+end
+
+describe 'Closest Steakhouse' do
+  context 'When given two steakhouses with the same amount of distance' do
+    it 'should return the coordinates of the one whose hypotenuse is smaller' do
+      expect(closest_steakhouses([[0, 10], [5, 5]], 1)).to eq([[5, 5]])
+    end
+  end
+end
