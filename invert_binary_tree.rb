@@ -60,39 +60,51 @@ class Node
   end
 end
 
-def invert(root)
-  traverse = lambda do |node|
-    return if node.nil?
+# Tree
+class Tree
+  attr_accessor :root
 
-    placeholder = node.left
-    node.left = node.right
-    node.right = placeholder
-
-    traverse.call(node.left)
-    traverse.call(node.right)
+  def initialize(root)
+    @root = root
   end
-  traverse.call(root)
 
-  root
-end
+  def invert
+    traverse = lambda do |node|
+      return if node.nil?
 
-def print_tree(root)
-  print = lambda do |node|
-    return if node.nil?
+      placeholder = node.left
+      node.left = node.right
+      node.right = placeholder
 
-    puts node.value
+      traverse.call(node.left)
+      traverse.call(node.right)
+    end
+    traverse.call(@root)
 
-    print.call(node.left)
-    print.call(node.right)
+    @root
   end
-  print.call(root)
+
+  def print
+    print = lambda do |node|
+      return if node.nil?
+
+      puts node.value
+
+      print.call(node.left)
+      print.call(node.right)
+    end
+    print.call(@root)
+  end
 end
 
 root = Node.new(1)
-root.left = Node.new(2)
-root.right = Node.new(3)
-root.right.right = Node.new(5)
-root.right.left = Node.new(4)
+tree = Tree.new(root)
+tree.root.left = Node.new(2)
+tree.root.right = Node.new(3)
+tree.root.right.right = Node.new(5)
+tree.root.right.left = Node.new(4)
 
-# p invert(root)
-p print_tree(root)
+tree.print
+tree.invert
+puts
+tree.print
