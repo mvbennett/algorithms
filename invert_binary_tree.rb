@@ -97,7 +97,7 @@ class Tree
     depth
   end
 
-  def print
+  def print_normal
     print = lambda do |node|
       return if node.nil?
 
@@ -108,7 +108,29 @@ class Tree
 
       return string
     end
-    p print.call(@root)
+    print print.call(@root)
+  end
+
+  def print_better
+    print = lambda do |node|
+      return if node.nil?
+
+      string = "     (#{node.value})     "
+      if !node.left.nil? && !node.right.nil?
+        string += "\n"
+        string += print.call(node.left)
+        string += print.call(node.right)
+      elsif !node.left.nil?
+        string += "\n"
+        string += print.call(node.left)
+      elsif !node.right.nil?
+        string += "\n"
+        string += print.call(node.right)
+      end
+
+      return string
+    end
+    print print.call(@root)
   end
 end
 
@@ -119,9 +141,9 @@ tree.root.right = Node.new(3)
 tree.root.right.right = Node.new(5)
 tree.root.right.left = Node.new(4)
 
-tree.print
+tree.print_normal
 puts
 p tree.depth
 tree.invert
 puts
-tree.print
+tree.print_normal
