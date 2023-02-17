@@ -88,12 +88,9 @@ class Tree
     print = lambda do |node|
       return if node.nil?
 
-      puts node.value
-
-      print.call(node.left)
-      print.call(node.right)
+      return "#{node.value}>left: #{print.call(node.left)}>right: #{print.call(node.right)}"
     end
-    print.call(@root)
+    p print.call(@root)
   end
 end
 
