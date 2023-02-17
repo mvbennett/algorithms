@@ -84,6 +84,19 @@ class Tree
     @root
   end
 
+  def depth
+    queue = []
+    queue << @root
+    depth = 1
+    until queue.empty?
+      node = queue.pop
+      depth += 1 unless node.left.nil? && node.right.nil?
+      queue << node.left unless node.left.nil?
+      queue << node.right unless node.right.nil?
+    end
+    depth
+  end
+
   def print
     print = lambda do |node|
       return if node.nil?
@@ -102,6 +115,8 @@ tree.root.right.right = Node.new(5)
 tree.root.right.left = Node.new(4)
 
 tree.print
+puts
+p tree.depth
 tree.invert
 puts
 tree.print
