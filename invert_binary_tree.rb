@@ -49,8 +49,10 @@ function helper(node):
 return root node
 =end
 
+# Node
 class Node
   attr_accessor :value, :left, :right
+
   def initialize(value = nil)
     @value = value
     @left = nil
@@ -75,7 +77,15 @@ def invert(root)
 end
 
 def print_tree(root)
+  print = lambda do |node|
+    return if node.nil?
 
+    puts node.value
+
+    print.call(node.left)
+    print.call(node.right)
+  end
+  print.call(root)
 end
 
 root = Node.new(1)
@@ -84,4 +94,5 @@ root.right = Node.new(3)
 root.right.right = Node.new(5)
 root.right.left = Node.new(4)
 
-p invert(root)
+# p invert(root)
+p print_tree(root)
