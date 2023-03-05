@@ -49,9 +49,16 @@ class Heap
   end
 end
 
-heap = Heap.new
-nine_nums = [5, 2, 3, 9, 1, 4, 6, 8, 7]
-nine_nums.each do |num|
-  heap.add(num)
+
+
+describe 'Heap' do
+  heap = Heap.new
+  [5, 2, 3, 9, 1, 4, 6, 8, 7].each do |num|
+    heap.add(num)
+  end
+  context 'When multiple numbers are added to the heap' do
+    it 'should have an array that is sorted from min to max' do
+      expect(heap.array).to eq([1, 2, 3, 4, 5, 6, 7, 8, 9])
+    end
+  end
 end
-p heap.array
