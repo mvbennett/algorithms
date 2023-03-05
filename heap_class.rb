@@ -47,6 +47,10 @@ class Heap
     @array << value
     heapsort
   end
+
+  def max
+    @array.last
+  end
 end
 
 
@@ -59,6 +63,12 @@ describe 'Heap' do
   context 'When multiple numbers are added to the heap' do
     it 'should have an array that is sorted from min to max' do
       expect(heap.array).to eq([1, 2, 3, 4, 5, 6, 7, 8, 9])
+    end
+  end
+
+  context 'Heap max method' do
+    it 'should give the max value in the heap' do
+      expect(heap.max).to eq(9)
     end
   end
 end
