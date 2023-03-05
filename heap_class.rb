@@ -59,20 +59,27 @@ end
 
 
 
-# describe 'Heap' do
-#   heap = Heap.new
-#   [5, 2, 3, 9, 1, 4, 6, 8, 7].each do |num|
-#     heap.add(num)
-#   end
-#   context 'When multiple numbers are added to the heap' do
-#     it 'should have an array that is sorted from min to max' do
-#       expect(heap.array).to eq([1, 2, 3, 4, 5, 6, 7, 8, 9])
-#     end
-#   end
+describe 'Heap' do
+  heap = Heap.new
+  [5, 2, 3, 9, 1, 4, 6, 8, 7].each do |num|
+    heap.add(num)
+  end
+  context 'When multiple numbers are added to the heap' do
+    it 'should have an array that is sorted from min to max' do
+      expect(heap.array).to eq([1, 2, 3, 4, 5, 6, 7, 8, 9])
+    end
+  end
 
-#   context 'Heap max method' do
-#     it 'should give the max value in the heap' do
-#       expect(heap.max).to eq(9)
-#     end
-#   end
-# end
+  context 'Heap max method' do
+    it 'should give the max value in the heap' do
+      expect(heap.max).to eq(9)
+    end
+  end
+
+  context 'Heap pop method' do
+    it 'should pop the max value off of the heap' do
+      expect(heap.pop).to eq(9)
+      expect(heap.array).to eq([1, 2, 3, 4, 5, 6, 7, 8])
+    end
+  end
+end
